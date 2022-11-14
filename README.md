@@ -8,7 +8,7 @@ dagteam
  - ml_project
 ```
 
-![project structure](dagteam.png)
+![project structure](./dagteam.png)
 
 The project structure allows each team to maintain their own code with its own Python dependencies. 
 One team's code changes, or dependency upgrades, do not impact the other teams.
@@ -55,7 +55,7 @@ def penguin_cluster(penguins):
     return penguin_cluster
 ```
 
-![global asset view](global_assets.png)
+![global asset view](./global_assets.png)
 
 To run the entire global data platform:
 
@@ -67,7 +67,7 @@ dagit
 
 This global run uses `workspace.yaml` to load a virtualenv for analytics and a virtualenv for ml-project.
 
-![multiple projects in dagster](workspaces.png)
+![multiple projects in dagster](./workspaces.png)
 
 A similar structure occurs in production on Dagster Cloud. The Python dependencies for the orchestrator (dagster and dagit, contained in .venv-dagit) are _separate and isolated_ from all of the project code.
 
