@@ -57,12 +57,32 @@ def penguin_cluster(penguins):
 
 ![global asset view](./global_assets.png)
 
+
+For cross-project assets, like `penguin_cluster`, scheduling is done through sensors. For example:
+- The `analytics_project/repository.py` defines a regular schedule to update `penguins` every minute.
+- The `ml_project/repository.py` defines a sensor that runs `penguin_cluster` anytime `penguins` is updated. 
+
+
 To run the entire global data platform:
 
 ```
 # load the global virtual environment, which only contains dagit and dagster
 source .venv-dagit
 dagit
+```
+
+To run the entire global data platform with schedules and sensors enabled:
+
+```
+# in a first terminal
+source .venv-dagit
+export DAGSTER_HOME=/some/path
+dagit
+
+# in a second terminal
+source .venv-dagit
+export DAGSTER_HOME=/some/path
+dagster-daemon run
 ```
 
 This global run uses `workspace.yaml` to load a virtualenv for analytics and a virtualenv for ml-project.
