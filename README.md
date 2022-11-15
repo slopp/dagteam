@@ -69,8 +69,6 @@ This global run uses `workspace.yaml` to load a virtualenv for analytics and a v
 
 ![multiple projects in dagster](./workspaces.png)
 
-A similar structure occurs in production on Dagster Cloud. The Python dependencies for the orchestrator (dagster and dagit, contained in .venv-dagit) are _separate and isolated_ from all of the project code.
+The Python dependencies for the orchestrator (dagster and dagit, contained in .venv-dagit) are _separate and isolated_ from all of the project code.
 
-# TODO
-- [ ] Add GitHub Workflows to deploy sub-modules as their own code locations to Cloud
-- [ ] 
+On Dagster Cloud the setup is similar, and `dagster_cloud.yaml` ensures each project is represented as a unique code location with its own dependencies.

@@ -6,7 +6,8 @@ setup(
     install_requires=[
         "dagster",
         "pandas",
-        "scikit-learn"
+        "scikit-learn",
+        "dagster-cloud"
     ],
     extras_require={"dev": ["dagit", "pytest"]},
 )
