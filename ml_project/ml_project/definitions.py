@@ -1,7 +1,10 @@
-from dagster import load_assets_from_package_module, repository, RunRequest, define_asset_job, SourceAsset
+from dagster import load_assets_from_package_module, Definitions, RunRequest, define_asset_job, SourceAsset
 from dagster import AssetKey, EventLogEntry, SensorEvaluationContext, asset_sensor
-
+from utils import helper 
 from ml_project import assets
+
+# call function from common utilities package
+helper()
 
 # define a sensor that updates the penguin cluster asset
 # when the upstream asset updates
@@ -14,7 +17,7 @@ def update_penguin_cluster_sensor(context: SensorEvaluationContext, asset_event:
     yield RunRequest(run_key=context.cursor)
 
 
-
-@repository
-def ml_project():
-    return [load_assets_from_package_module(assets), [update_penguin_cluster_sensor]]
+defs = Definitions(
+    assets=load_assets_from_package_module(assets),
+    sensors=[update_penguin_cluster_sensor]
+)

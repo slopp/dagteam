@@ -92,3 +92,20 @@ This global run uses `workspace.yaml` to load a virtualenv for analytics and a v
 The Python dependencies for the orchestrator (dagster and dagit, contained in .venv-dagit) are _separate and isolated_ from all of the project code.
 
 On Dagster Cloud the setup is similar, and `dagster_cloud.yaml` ensures each project is represented as a unique code location with its own dependencies.
+
+Often it is useful to have shared utilities. The `utils` directory represents an internal python package with a shared utility function. The `ml_project` imports this utility package. In order for this to work, the utils package must be compatible with all project environments, and should be installed in those project environments. Locally this can be done with: 
+
+```bash
+source ml_project/.venv-mlproject/bin/activate
+cd utils 
+pip install .
+```
+
+You can see that the utils package is installed in the ml_project environment by inspecting `ml_project/requirements.txt`.
+
+For Dagster Cloud, the utils package must be installed as part of the build process. This can be done in a few ways:
+
+1. Hosting the utils package in a private PyPI repository, and then adding a `requirements.txt` in the project directory (eg `ml_project/requirements.txt`) that specifies to install the utility package from the private PyPI.
+
+2. Customizing the GitHub action workflows (`.github/workflows`) to copy the the utils package into the project build directory (eg `cp -r utils ml_project/utils`) and then adding a `requirements.txt` in the project directory (eg `ml_project/requirements.txt`) that specifies to install the utility package from the copied subdirectory.
+

@@ -1,1 +1,1 @@
-from .repository import ml_project
+from .definitions import defs
