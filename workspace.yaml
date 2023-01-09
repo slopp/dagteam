@@ -1,8 +1,8 @@
 load_from:
   - python_package: 
       package_name: ml_project.ml_project
-      executable_path: ml_project/.venv-mlproject/bin/python
+      executable_path: ml_project/.venv/bin/python
       
   - python_package: 
       package_name: analytics_project.analytics_project
-      executable_path: analytics_project/.venv-analytics/bin/python
+      executable_path: analytics_project/.venv/bin/python

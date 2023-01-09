@@ -7,7 +7,8 @@ setup(
         "dagster",
         "pandas",
         "scikit-learn",
-        "dagster-cloud"
+        "dagster-cloud",
+        "boto3"
     ],
     extras_require={"dev": ["dagit", "pytest"]},
 )

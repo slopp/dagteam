@@ -6,7 +6,8 @@ setup(
     install_requires=[
         "dagster",
         "pandas",
-        "dagster-cloud"
+        "dagster-cloud",
+        "boto3"
     ],
     extras_require={"dev": ["dagit", "pytest"]},
 )
