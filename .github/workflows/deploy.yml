@@ -11,6 +11,7 @@ concurrency:
 env:
   DAGSTER_CLOUD_URL: ${{ secrets.DAGSTER_CLOUD_URL }}
   DAGSTER_CLOUD_API_TOKEN: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
+  ENABLE_FAST_DEPLOYS: 'false'
 
 jobs:
   dagster_cloud_default_deploy:
@@ -58,14 +59,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+      - name: Copy Utils
+        run: | 
+          cp -r ./utils ./ml_project/utils
       - name: Build and deploy to Dagster Cloud serverless
-        uses: dagster-io/dagster-cloud-action/actions/serverless_prod_deploy@v0.1
+        uses: dagster-io/dagster-cloud-action/actions/serverless_prod_deploy@lopp-optional-checkout
         with:
           dagster_cloud_api_token: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
           location: ${{ toJson(matrix.location) }}
           # Uncomment to pass through Github Action secrets as a JSON string of key-value pairs
           # env_vars: ${{ toJson(secrets) }}
           organization_id: ${{ secrets.ORGANIZATION_ID }}
+          checkout_repo: 'false'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
