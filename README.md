@@ -101,7 +101,7 @@ cd utils
 pip install .
 ```
 
-You can see that the utils package is installed in the ml_project environment by inspecting `ml_project/requirements.txt`.
+You can see that the utils package is installed in the ml_project environment by inspecting `ml_project/local_requirements.txt`.
 
 For Dagster Cloud, the utils package must be installed as part of the build process. This can be done in a few ways:
 
