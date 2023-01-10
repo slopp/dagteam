@@ -63,7 +63,7 @@ jobs:
         run: | 
           cp -r ./utils ./ml_project/utils
       - name: Build and deploy to Dagster Cloud serverless
-        uses: dagster-io/dagster-cloud-action/actions/serverless_prod_deploy@lopp-optional-checkout
+        uses: dagster-io/dagster-cloud-action/actions/serverless_prod_deploy@v0.1.15
         with:
           dagster_cloud_api_token: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
           location: ${{ toJson(matrix.location) }}
